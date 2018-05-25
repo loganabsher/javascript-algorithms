@@ -1,15 +1,18 @@
-function SingleLinkedList(value) {
-  this.value = value;
-  this.next = null;
+class SingleLinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+  
+  add(node) {
+    if(this.next) {
+      this.next.add(node);
+    }else{
+      this.next = node;
+    }
+  }
 }
 
-SingleLinkedList.prototype.add = function(node) {
-  if(this.next) {
-    this.next.add(node);
-  }else{
-    this.next = node;
-  }
-};
 
 const root = new SingleLinkedList(6);
 const one = new SingleLinkedList(20);
@@ -20,20 +23,22 @@ root.add(two);
 
 console.log(root);
 
-function DoubleLinkedList(value) {
-  this.value = value;
-  this.next = null;
-  this.prev = null;
-}
-
-DoubleLinkedList.prototype.add = function(node) {
-  if(this.next) {
-    this.next.add(node);
-  }else{
-    this.next = node;
-    node.prev = this;
+class DoubleLinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
   }
-};
+
+  add(node) {
+    if(this.next) {
+      this.next.add(node);
+    }else{
+      this.next = node;
+      node.prev = this;
+    }
+  }
+}
 
 const rootTwo = new DoubleLinkedList(6);
 const oneTwo = new DoubleLinkedList(20);
